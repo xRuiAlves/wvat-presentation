@@ -37,6 +37,16 @@ article.title h1 {
   font-size: 5em;
 }
 
+article.title:first-of-type h1 {
+  font-size: 7em;
+}
+
+article.title:first-of-type p {
+  font-size: 3em;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
 /* 
 article:last-of-type header {
   margin-bottom: 3.5em;

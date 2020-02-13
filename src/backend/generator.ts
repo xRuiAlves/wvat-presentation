@@ -152,7 +152,7 @@ function render(slides: Slide[], frontmatter: string, output: string, name: stri
   })
 
   if (!fs.existsSync(output)) fs.mkdirSync(output)
-  fs.writeFileSync(`${output}/${name}.html`, contents)
+  fs.writeFileSync(`${output}/index.html`, contents)
 }
 
 /**

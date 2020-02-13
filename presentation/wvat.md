@@ -7,4 +7,4 @@ class: title
 
 # WVAT
 
-Web Vulnerability Assessment Tool
+Automating web software version auditing with WVAT

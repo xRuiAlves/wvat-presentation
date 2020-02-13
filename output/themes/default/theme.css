@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Raleway');
+
+:root {
+  --color-primary: #000099;
+  --color-background: #f8f8ff;
+}
+
+article.slide {
+  color: black;
+  background-color: var(--color-background);
+}
+
+article.slide { font-family: Merriweather}
+article.slide h1 { font-family: Raleway}
+article.slide h2 { font-family: Raleway}
+article.slide h3 { font-family: Raleway}
+
+article.slide img {
+  padding: 1em;
+  background-color: var(--color-background);
+}
+
+article.slide a {
+  color: var(--color-primary);
+}
+
+article.slide table {
+  background-color: var(--color-background);
+  border-spacing: 1em;
+}
+
+h1 {
+  color: var(--color-primary);
+}
+
+article.title h1 {
+  font-size: 5em;
+}
+
+article.title:first-of-type h1 {
+  font-size: 7em;
+}
+
+article.title:first-of-type p {
+  font-size: 3em;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
+/* 
+article:last-of-type header {
+  margin-bottom: 3.5em;
+}
+
+article:first-of-type p {
+  font-size: 2.2em;
+}
+
+article:last-of-type p:last-of-type {
+  margin-top: 0;
+  font-size: 2.5em;
+}
+
+footer {
+  font-weight: 1.05em;
+  color: #4b4b4b;
+}
+
+code {
+  color: var(--color-primary);
+}
+
+article.slide.title.presentation header {
+  transform: translateY(-5.5em);
+}
+
+article.slide.title.presentation p {
+  transform: translateY(-2.5em);
+}
+*/

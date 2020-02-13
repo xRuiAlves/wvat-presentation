@@ -16,33 +16,35 @@ class: whoami
 
 ![Foto](foto.jpg)
 
-My name is **Rui Alves** and I'm a Computer Engineering MSc (4/5 years) @FEUP
+My name is **Rui Alves** and I'm a Computer Engineering MSc (4/5 years) student @FEUP
 
-I like programming challenges and I play a lot of chess. I mostly do web development
+I like software development in general and I play a lot of chess. I do mostly web development and random programming challenges.
 
 You can find my projects at [github.com/xRuiAlves](https://github.com/xRuiAlves)
 
 **DISCLAIMER:** I'm not a security guy!
+
+I'm also part of the 75% of people that are afraid to speak in public ![](smile.png)
 
 ---
 class: whatis
 
 # What is WVAT
 
-WVAT is an **open-source** CLI tool to analyse a domain, its subdomains and respective pages, extracting the used technologies to find their **vulnerabilities** in order to cross-reference them with known exploits.
+WVAT (**W**eb **V**ulnerability **A**ssessment **T**ool) is an **open-source** CLI tool to analyse a domain, its subdomains and respective pages, extracting the used technologies to find their **vulnerabilities** in order to cross-reference them with known exploits.
 
 ![Architecture](architecture.png)
 
 To perform these tasks, various different tools are used! We'll get to that later.
 
 ---
-class: context
+class: project-context
 
 # Some Context
 
-This project was proposed as part of the Software Development Lab course @MIEIC, FEUP (4th year, 1st semestre course).
+This project was proposed as part of the Software Development Lab course @MIEIC, FEUP (4th year, 1st semester course).
 
-The proposers were **João Pedro Dias**, **Pedro Sousa** and **Luís Catarino** (special props to **João Pedro Dias**, who helped us a lot during development), security professionals and/or enthusiasts, as they realised that there was no similar aggregated solution for the problems this tool solves.
+The proposers were **João Pedro Dias**, **Pedro Sousa** and **Luís Catarino** (special props to **João Pedro Dias**, who helped us a lot during development), security professionals and/or enthusiasts, as they realized that there was no similar aggregated solution for the problems this tool solves.
 
 ![LDSO Course](ldso.png)
 
@@ -62,9 +64,18 @@ class: team
 
 # The Team
 
-The team consisted of ~~9 people~~ **7 people**, all from MIEIC.
+The team consisted of ~~9 people~~ **8 people**, all from MIEIC.
 
 ![Team](team_2.png)
+
+---
+class: team
+
+# The Team
+
+The team consisted of ~~9 people~~ ~~8 people~~ **7 people**, all from MIEIC.
+
+![Team](team_3.png)
 
 ---
 class: title hacking
@@ -80,15 +91,15 @@ class: domain-analysis
 
 ```
 ./wvat analyse ruialves.me \
---crawlingTimeout 30 \
+--crawlingTimeout 45 \
 --timeout 300 \
 --depth 3 \
 --verbose \
---noCrawlingCache \
---graph
+--graph \
+--config wvat-config.json
 ```
 
-If everything goes well, 4 subdomains should be found and analysed! If not, i'll probabbly think about some good excuse! ![](upside_down.png)
+If everything goes well, 4 subdomains should be found and analysed! If not, I'll probably think about some good excuse! ![](upside_down.png)
 
 ---
 class: technologies
@@ -105,7 +116,7 @@ To crawl the domain subdomains, we used `amass`, by calling the binary directly 
 
 To crawl all subdomains pages, we used `js-crawler` (a pretty cool node module).
 
-Specially for bigger crawling depths, this process can take a LONG time. For that reason, it's good to allow some sort of caching. We are using the `node-persist` module to store crawling results, which can be optionally reused.
+Especially for bigger crawling depths, this process can take a LONG time. For that reason, it's good to allow some sort of caching. We are using the `node-persist` module to store crawling results, which can be optionally reused.
 
 ---
 class: technologies
@@ -122,7 +133,7 @@ To find technologies present in a webpage, we used multiple sources and intersec
 
 ## Searching technologies vulnerabilities
 
-We're using [cve mitre](https://cve.mitre.org/) as vulnerabilies database. Since they allow full database downloading, to make the process faster, the databased is downloaded on tool usage and parsed (removing headers plus some minor tweaks), being used as a local cache.
+We're using [cve mitre](https://cve.mitre.org/) as vulnerabilities database. Since they allow full database downloading, to make the process faster, the database is downloaded on tool usage and parsed (removing headers plus some minor tweaks), being used as a local cache.
 
 To do a full-text-search-sort-of-thing on the technology, we are using egrep (grep with regex) with some tweaks. This actually provides very good results in little execution time!
 
@@ -141,7 +152,9 @@ There are many cool exploit databases out there. In this part we just provide li
 
 ## Others
 
-Some minor network analysis is also made to the domain, in order to find location info, DNS infomation, IPs, *et cetera*.
+Some minor network analysis is also made to the domain, in order to find location info, DNS information, IPs, *et cetera*.
+
+The tool's behaviour can be manipulated with a [configuration file](wvat-config.json).
 
 ---
 
@@ -158,7 +171,7 @@ We also use an `amass` option to generate a cool network graph! A network graph 
 ---
 class: list-page
 
-# Main challenges in development
+# Main challenges in the development
 
 - At first, it was quite **hard to understand the scope of the project** (mainly due to our lack of knowledge) - seriously, we had no idea what we were doing;
 - This tool (in its current state), to work properly, is **very reliable on a good internet connection**;
@@ -174,9 +187,9 @@ class: list-page-2
 - **The tool is not scalable** - currently, there is no thread pool limitation, so it eats memory like cereal;
 - Due to little time, there is **not enough documentation**, which makes it harder to contribute;
 - It would be nice if it was possible to integrate more different tools in the various tool's steps, to get better and more meaningful results;
-- It could be interesting to use different HTTP methods on the found endpoits (specially when analysis API related domains);
+- It could be interesting to use different HTTP methods on the found endpoints (especially when analysis API related domains);
 - Currently, **no authentication or HTTP headers specification is allowed**. Adding this feature would highly improve crawling results;
-- **Not enough Unit Tests** to coverage all business logic in the codebase;
+- **Not enough Unit Tests** to cover all business logic in the codebase;
 - Also due to little time, there is actually **repeated code** in some parts of the project, so some refactoring is in order.
 
 ---
@@ -186,7 +199,7 @@ class: title
 
 Do feel free to ask questions!
 
-You many contribute to the tool at 
+You may contribute to the tool at 
 
 [github.com/tempto/wvat](https://github.com/tempto/wvat)
 

@@ -93,22 +93,39 @@ article.whoami h1 {
   font-family: 'Ubuntu Mono', monospace;
 }
 
-article.whoami img {
+article.whoami p:first-of-type img {
   float: right;
   height: 50vh;
   padding: 0;
   padding-left: 1em;
 }
 
-article.whoami section.content p:nth-of-type(5) {
-  margin-top: 6.5em;
+article.whoami p:last-of-type {
+  font-size: 1em;
 }
 
-article.context img {
+article.whoami p:last-of-type img {
+  height: 1em;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+article.whoami section.content p:nth-of-type(5) {
+  margin-top: 5em;
+}
+
+article.project-context img {
   float: right;
+  height: 35vh;
   padding: 0;
   margin-left: 1em;
   margin-right: 1em;
+}
+
+article.team img {
+  height: 57.5vh;
 }
 
 article.slide.title.hacking header {

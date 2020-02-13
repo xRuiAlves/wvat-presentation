@@ -47,6 +47,28 @@ article.title:first-of-type p {
   margin-right: 4em;
 }
 
+article.whoami h1 {
+  font-family: monospace;
+}
+
+article.whoami img {
+  float: right;
+  height: 50vh;
+  padding: 0;
+  padding-left: 1em;
+}
+
+article.whoami section.content p:nth-of-type(5) {
+  margin-top: 6.5em;
+}
+
+article.context img {
+  float: right;
+  padding: 0;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
 /* 
 article:last-of-type header {
   margin-bottom: 3.5em;

@@ -29,7 +29,7 @@
   <footer>
     <span class="left">WVAT</span>
     <span class="center">Rui Alves</span>
-    <span class="right">1/6</span>
+    <span class="right">1/15</span>
   </footer>
 </article><article id="2" class="slide whoami">
   <header>
@@ -40,7 +40,7 @@
 <p><img src="foto.jpg" alt="Foto"></p>
 <p>My name is <strong>Rui Alves</strong> and I'm a Computer Engineering MSc (4/5 years) @FEUP</p>
 <p>I like programming challenges and I play a lot of chess. I mostly do web development</p>
-<p>You can find my projects at <a href="github.com/xRuiAlves">github.com/xRuiAlves</a></p>
+<p>You can find my projects at <a href="https://github.com/xRuiAlves">github.com/xRuiAlves</a></p>
 <p><strong>DISCLAIMER:</strong> I'm not a security guy!</p>
 
     </section>
@@ -48,7 +48,7 @@
   <footer>
     <span class="left">WVAT</span>
     <span class="center">Rui Alves</span>
-    <span class="right">2/6</span>
+    <span class="right">2/15</span>
   </footer>
 </article><article id="3" class="slide whatis">
   <header>
@@ -65,7 +65,7 @@
   <footer>
     <span class="left">WVAT</span>
     <span class="center">Rui Alves</span>
-    <span class="right">3/6</span>
+    <span class="right">3/15</span>
   </footer>
 </article><article id="4" class="slide context">
   <header>
@@ -83,7 +83,7 @@
   <footer>
     <span class="left">WVAT</span>
     <span class="center">Rui Alves</span>
-    <span class="right">4/6</span>
+    <span class="right">4/15</span>
   </footer>
 </article><article id="5" class="slide team">
   <header>
@@ -99,7 +99,7 @@
   <footer>
     <span class="left">WVAT</span>
     <span class="center">Rui Alves</span>
-    <span class="right">5/6</span>
+    <span class="right">5/15</span>
   </footer>
 </article><article id="6" class="slide team">
   <header>
@@ -115,7 +115,193 @@
   <footer>
     <span class="left">WVAT</span>
     <span class="center">Rui Alves</span>
-    <span class="right">6/6</span>
+    <span class="right">6/15</span>
+  </footer>
+</article><article id="7" class="slide title hacking">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Hacking time!</h1>
+<p><img src="hacking.gif" alt="Hacking"></p>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">7/15</span>
+  </footer>
+</article><article id="8" class="slide domain-analysis">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Let's analyse my own Domain, <a href="https://ruialves.me">ruialves.me</a></h1>
+<pre><code class="hljs">./wvat analyse ruialves.<span class="hljs-keyword">me</span> \
+<span class="hljs-comment">--crawlingTimeout 30 \</span>
+<span class="hljs-comment">--timeout 300 \</span>
+<span class="hljs-comment">--depth 3 \</span>
+<span class="hljs-comment">--verbose \</span>
+<span class="hljs-comment">--noCrawlingCache \</span>
+<span class="hljs-comment">--graph</span>
+</code></pre>
+<p>If everything goes well, 4 subdomains should be found and analysed! If not, i'll probabbly think about some good excuse! <img src="upside_down.png" alt=""></p>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">8/15</span>
+  </footer>
+</article><article id="9" class="slide technologies">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Stuff we used</h1>
+<h2>Tool development</h2>
+<p>The whole tool was built using <code>NodeJS</code> (sorry, we didn't use Python <img src="sweat_smile.png" alt="">). We also used the <code>oclif</code> CLI framework to make the user interface development easier.</p>
+<h2>Crawling</h2>
+<p>To crawl the domain subdomains, we used <code>amass</code>, by calling the binary directly and parsing the generated output.</p>
+<p>To crawl all subdomains pages, we used <code>js-crawler</code> (a pretty cool node module).</p>
+<p>Specially for bigger crawling depths, this process can take a LONG time. For that reason, it's good to allow some sort of caching. We are using the <code>node-persist</code> module to store crawling results, which can be optionally reused.</p>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">9/15</span>
+  </footer>
+</article><article id="10" class="slide technologies">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Stuff we used</h1>
+<h2>Page technology fingerprint</h2>
+<p>To find technologies present in a webpage, we used multiple sources and intersected the data (to allow finding more technologies and have better versioning info):</p>
+<ul>
+<li><code>Wappalyser</code> - the node module version</li>
+<li><code>Webtech</code> - using the binary directly and parsing the generated output</li>
+<li><code>Toolbar Netcraft</code> - scraping the web page to get results</li>
+</ul>
+<h2>Searching technologies vulnerabilities</h2>
+<p>We're using <a href="https://cve.mitre.org/">cve mitre</a> as vulnerabilies database. Since they allow full database downloading, to make the process faster, the databased is downloaded on tool usage and parsed (removing headers plus some minor tweaks), being used as a local cache.</p>
+<p>To do a full-text-search-sort-of-thing on the technology, we are using egrep (grep with regex) with some tweaks. This actually provides very good results in little execution time!</p>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">10/15</span>
+  </footer>
+</article><article id="11" class="slide technologies">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Stuff we used</h1>
+<h2>Matching vulnerabilities with exploits</h2>
+<p>There are many cool exploit databases out there. In this part we just provide links to the databases that may contain relevant exploits to the found CVEs:</p>
+<ul>
+<li><a href="https://www.exploit-db.com/">exploit-db.com</a></li>
+<li><a href="https://www.rapid7.com/">rapid7.com</a></li>
+<li><a href="https://www.circl.lu/">circl.lu</a></li>
+</ul>
+<h2>Others</h2>
+<p>Some minor network analysis is also made to the domain, in order to find location info, DNS infomation, IPs, <em>et cetera</em>.</p>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">11/15</span>
+  </footer>
+</article><article id="12" class="slide ">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Results Reporting</h1>
+<p>It's important to provide a good way to visualize the results. For that reason, an <code>HTML Report</code> is built after the tool terminates the analysis.</p>
+<p>A report from a sample analysis can be found <a href="report.html">here</a>.</p>
+<p>Moreover, to make integrations with other tools easier, we also provide a <code>JSON</code> format alternative (which is much more machine-friendly than html).</p>
+<p>We also use an <code>amass</code> option to generate a cool network graph! A network graph page from another sample analysis can be found <a href="network_graph.html">here</a>.</p>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">12/15</span>
+  </footer>
+</article><article id="13" class="slide list-page">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Main challenges in development</h1>
+<ul>
+<li>At first, it was quite <strong>hard to understand the scope of the project</strong> (mainly due to our lack of knowledge) - seriously, we had no idea what we were doing;</li>
+<li>This tool (in its current state), to work properly, is <strong>very reliable on a good internet connection</strong>;</li>
+<li>There were <strong>many different options to explore</strong>, when it comes to crawling, tech fingerprinting, vulnerabilities and exploits analysis. I mean, a LOT;</li>
+<li>Too many features, <strong>too little time</strong>!</li>
+<li>This wasn't only a project's development - there was the whole &quot;Curricular Unit&quot; thing.</li>
+</ul>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">13/15</span>
+  </footer>
+</article><article id="14" class="slide list-page-2">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Future work</h1>
+<ul>
+<li><strong>The tool is not scalable</strong> - currently, there is no thread pool limitation, so it eats memory like cereal;</li>
+<li>Due to little time, there is <strong>not enough documentation</strong>, which makes it harder to contribute;</li>
+<li>It would be nice if it was possible to integrate more different tools in the various tool's steps, to get better and more meaningful results;</li>
+<li>It could be interesting to use different HTTP methods on the found endpoits (specially when analysis API related domains);</li>
+<li>Currently, <strong>no authentication or HTTP headers specification is allowed</strong>. Adding this feature would highly improve crawling results;</li>
+<li><strong>Not enough Unit Tests</strong> to coverage all business logic in the codebase;</li>
+<li>Also due to little time, there is actually <strong>repeated code</strong> in some parts of the project, so some refactoring is in order.</li>
+</ul>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">14/15</span>
+  </footer>
+</article><article id="15" class="slide title">
+  <header>
+  </header>
+  <div class="resizer">
+    <section class="content">
+      <h1>Thank you!</h1>
+<p>Do feel free to ask questions!</p>
+<p>You many contribute to the tool at</p>
+<p><a href="https://github.com/tempto/wvat">github.com/tempto/wvat</a></p>
+<p>This presentation is available at</p>
+<p><a href="https://wvat-presentation.ruialves.me">wvat-presentation.ruialves.me</a></p>
+
+    </section>
+  </div>
+  <footer>
+    <span class="left">WVAT</span>
+    <span class="center">Rui Alves</span>
+    <span class="right">15/15</span>
   </footer>
 </article>  </body>
 </html>
